@@ -1,1 +1,1 @@
-# projeto_ml_classifier_nlp_noticiciario_bbc_news_class_text
+# Projeto ML Classifier N.L.P Noticiciario BBC News Classificacao de texto
