@@ -4,7 +4,7 @@ __Bussines Problem:__
 > Nos dias atuais possuímos uma grande frequência de informações disponíveis em sites, jornais e mídias de comunicação, estar a par destas notícias pode nos gerar insights de tendências de mercado, o grande ponto é que como seres humanos possuímos limitações para absorção e leitura de muitas notícias, sendo necessário a automatização dessas tarefas com a implementação de algoritmos de inteligência artificial para NLP do inglês natural language processing para a leitura automatizada e posterior classificação de um grande volume de notícias.
 
 __Objetivo:__   
-> Desenvolver um modelo de machine learning para o processamento de NLP, para notícias extraídas do site bbc (British Broadcasting Corporation) e classificação das mesmas em classes denominadas, bussines, entertainment, politics, sport,tech
+> Desenvolver um modelo de machine learning para o processamento de NLP, para notícias extraídas do site bbc (British Broadcasting Corporation) e classificação das mesmas em classes denominadas, business, entertainment, politics, sport,tech
 
 __Autor:__  
    - Bruno Priantti.
@@ -41,39 +41,39 @@ __Step 01:__ Processo de Carregamento da base dados:
 Fontes:
 - https://www.bbc.com/news
 
-__Step 02:__ Seraparando base em variavel dependente X e independente y.
+__Step 02:__ Separando base numa variável dependente X e independente y.
 
-> Realizou-se a separacao da base em features e alvos ao todo tem-se um total de 2225 noticias catalogadas na base.
+> Realizou-se a separação da base em features e alvos ao todo tem-se um total de 2225 notícias catalogadas na base.
 
       print(len(X)):
       2225
   
-__Step 03:__ Adiante realizou-se o download das stop words, defini-se stop words como:
+__Step 03:__ Adiante realizou-se o download das stop words, define-se stopwords como:
 
 > Stop words (ou palavras de parada – tradução livre) são palavras que podem ser consideradas irrelevantes para o conjunto de resultados a ser exibido em uma busca realizada em uma search engine. Exemplos: as, e, os, de, para, com, sem, foi.
 
-mais definicoes em:
+mais definições em:
 
 https://pythonalgos.com/nlp-stop-words-when-and-why-to-use-them/
 
-> para isso utilizou-se o framework NLTK, mais informacoes disponiveis em:
+> para isso utilizou-se o framework NLTK, mais informações disponíveis em:
 
 https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml
 
-> como a base de noticias esta em ingles utilizaram-se as stopwords em ingles com o comando:
+> como a base de noticias esta em ingles utilizaram-se as stopwords em inglês com o comando:
 
     my_stop_words = set(stopwords.words('english'))
 
 __Step 04:__ Data Split, treinamento e teste:
 
-> Em seguida realizou-se a separacao em dados de treinamento e teste para o modelo, utilizou-se uma proporcao de 70/30, com o comando disponivel pelo pacote sklearn, train data split:
+> Em seguida realizou-se a separação em dados de treinamento e teste para o modelo, utilizou-se uma proporção de 70/30, com o comando disponível pelo pacote sklearn, train data split:
 
     # Divisão em treino e teste (70/30)
     X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size = 0.30, random_state = 75)
 
-__Step 05:__ Vetorizacao da base:
+__Step 05:__ Vetorização da base:
 
-> O processo de vetorizacao pode ser definido como a transicricao de textos para numeros torna-se necessario a realizcao dessa etapa pois o processamento cumputacional funciona com base numerica e nao textual, foi utilizado o script abaixo para a vetorizacao dos textos:
+> O processo de vetorização pode ser definido como a transcrição de textos para números torna-se necessário a realização dessa etapa pois o processamento computacional funciona com base numérica e nao textual, foi utilizado o script abaixo para a vetorização dos textos:
 
     # Vet
     vectorizer = TfidfVectorizer(norm = None, stop_words = my_stop_words, max_features = 1000, decode_error = "ignore")
@@ -84,7 +84,7 @@ __Step 05:__ Vetorizacao da base:
     
 __Step 06:__ Treinamento dos modelos de Machine Learning:
 
-> Adiante realizou-se o processo de treinamento dos modelos de  machine learning, optou-se por escolher os modelos de Regressao Logistica, multinomial, Random Forrest e Multinomial Nayve Baynes, optou-se por utilziar a tecnica de enssemble voting classifier, que nos permite unir as respostas dos modelos e ter uma agregacao de informacao contruibuindo para reduzir um erro e melhorar a acuracia e estabilidade das respostas do modelo, utilizou-se o framework scikit-learn para o desenvolvimento.
+> Adiante realizou-se o processo de treinamento dos modelos de  machine learning, optou-se por escolher os modelos de Regressão Logística, multinomial, Random Forrest e Multinomial Naive Baynes, optou-se por utilizar a técnica de ensemble voting classifier, que nos permite unir as respostas dos modelos e ter uma agregação de informação contribuindo para reduzir um erro e melhorar a acurácia e estabilidade das respostas do modelo, utilizou-se o framework scikit-learn para o desenvolvimento.
 
       # Modelos:
 
@@ -112,9 +112,9 @@ __Step 06:__ Treinamento dos modelos de Machine Learning:
       voting_model = voting_model.fit(X_treino_vectors, y_treino)
     
 
-__Step 07:__ Predict e Avaliando a Acuracia do Modelo:
+__Step 07:__ Predict e Avaliando a Acurácia do Modelo:
 
-> Realizou-se as etapas de predict para a base de teste e em seguida avaliacou-se a resposta da matriz de confusao e classificatio repport e acuracia do modelo, utilizando os scripts abaixo:
+> Realizou-se as etapas de predict para a base de teste e em seguida avaliou-se a resposta da matriz de confusão e Classification repport e acurácia do modelo, utilizando os scripts abaixo:
 
 - Classification Report:
 
@@ -131,19 +131,19 @@ __Step 07:__ Predict e Avaliando a Acuracia do Modelo:
          macro avg       0.97      0.97      0.97       668
       weighted avg       0.97      0.97      0.97       668
 
-- Matrix Confusao:
+- Matrix Confusão:
 
    > <img src="https://github.com/bpriantti/projeto_ml_classifier_nlp_noticiciario_bbc_news_class_text/blob/main/images/image_1.PNG?raw=true"  width="400" height = "300">
 
 Acurácia do Modelo: 0.9625748502994012 
 
-obs: Como obervamos o modelo obteve uma acuracia muito boa tendo um erro menor que 4% para a base de dados desconhecida.
+obs: Como observamos o modelo obteve uma acurácia muito boa tendo um erro menor que 4% para a base de dados desconhecida.
 
-__Step 08:__ Otimizando Hyperparametros:
+__Step 08:__ Otimizando Hiperparâmetros:
 
-Com o objetivo de melhorar a acuracia do modelo impementou-se a otimizacao de hyperparametros para o modelo optou-se por otimziar os hyperparametro, random_state do train data split.
+Com o objetivo de melhorar a acurácia do modelo implementou-se a otimização de hiperparâmetros para o modelo optou-se por otimizar os hiperparâmetros, random_state do train data split.
 
-Optou-se tambem por realizar o treinamento de outro modelo de enssemble utilizando o parametro hard e sort, basicamente a diferenca entre os dois é que no hard a resposta final é a confluencia de respostas dos modelos e no soft a votafcao da peso para determinado modelo escolhido pelo usuario.
+Optou-se também por realizar o treinamento de outro modelo de ensemble utilizando o parâmetro hard e sort, basicamente a diferença entre os dois é que no hard a resposta final é a confluência de respostas dos modelos e no soft a votação da peso para determinado modelo escolhido pelo usuário.
 
 utilizou-se o script:
 
@@ -196,4 +196,12 @@ utilizou-se o script:
 
 -Random State: 74 -Voting:hard -Acurácia: 0.9880239520958084
 -Random State: 93 -Voting:soft -Acurácia: 0.9865269461077845
+
+Resultados e Trabalhos Futuros:
+___
+
+Os resultados obtidos para o modelo foram satisfatórios com uma acurácia de 98.8 para a base de dados de teste, isso quer dizer que o modelo em produção pode ter um erro inferior a 2.2%, destaca-se a eficiência dos métodos ensemble como podemos observar tanto para o ensemble votting ou o stacking mostraram resultados satisfatórios.
+
+- Trabalhos Futuros:
+   > Implementar um modelo para a classificação de notícias e posts de redes sociais como o twitter, regedit e sites.
 
