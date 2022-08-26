@@ -10,7 +10,7 @@ __Autor:__
    - Bruno Priantti.
 
 __Apoio:__
-
+- D. Greene and P. Cunningham. "Practical Solutions to the Problem of Diagonal Dominance in Kernel Document Clustering", Proc. ICML 2006.
     
 __Contato:__  
   - bpriantti@gmail.com
