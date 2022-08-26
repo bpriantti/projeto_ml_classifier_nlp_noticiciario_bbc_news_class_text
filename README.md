@@ -114,14 +114,18 @@ __Step 06:__ Treinamento dos modelos de Machine Learning:
 
 __Step 07:__ Predict e Avaliando a Acuracia do Modelo:
 
-> Realizou-se as etapas de predict para a base de teste e em seguida avaliacou-se a resposta da matriz de confusao e classificatio nrepport e acuracia do modelo, utilizando os scripts abaixo:
+> Realizou-se as etapas de predict para a base de teste e em seguida avaliacou-se a resposta da matriz de confusao e classificatio repport e acuracia do modelo, utilizando os scripts abaixo:
 
-      # Previsões com dados de teste
-      previsoes =  voting_model.predict(X_teste_vectors)
+      Classification Report:  
+                    precision    recall  f1-score   support
 
-      # Grava o resultado
-      resultado.append(accuracy_score(y_teste, previsoes))
+                 0       0.94      0.95      0.94       152
+                 1       0.98      0.98      0.98       129
+                 2       0.98      0.96      0.97       126
+                 3       0.99      1.00      1.00       146
+                 4       0.97      0.97      0.97       115
 
-      # Print
-      print('\nAcurácia do Modelo:', accuracy_score(y_teste, previsoes),'\n')
-      print('\n')
+          accuracy                           0.97       668
+         macro avg       0.97      0.97      0.97       668
+      weighted avg       0.97      0.97      0.97       668
+
