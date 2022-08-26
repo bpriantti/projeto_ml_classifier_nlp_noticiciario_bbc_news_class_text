@@ -43,7 +43,7 @@ Fontes:
 
 __Step 02:__ Seraparando base em variavel dependente X e independente y.
 
-> Em seguida realizou-se a separacao da base em features e alvos ao todo tem-se um total de 2225 noticias catalogadas na base.
+> Realizou-se a separacao da base em features e alvos ao todo tem-se um total de 2225 noticias catalogadas na base.
 
       print(len(X)):
       2225
@@ -62,9 +62,66 @@ https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml
 
 > como a base de noticias esta em ingles utilizaram-se as stopwords em ingles com o comando:
 
-> my_stop_words = set(stopwords.words('english'))
+    my_stop_words = set(stopwords.words('english'))
 
-__Step 04:__ Adiante realizou-se o download das stop words, defini-se stop words como:
+__Step 04:__ Data Split, treinamento e teste:
 
+> Em seguida realizou-se a separacao em dados de treinamento e teste para o modelo, utilizou-se uma proporcao de 70/30, com o comando disponivel pelo pacote sklearn, train data split:
 
+    # Divisão em treino e teste (70/30)
+    X_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size = 0.30, random_state = 75)
 
+__Step 05:__ Vetorizacao da base:
+
+> O processo de vetorizacao pode ser definido como a transicricao de textos para numeros torna-se necessario a realizcao dessa etapa pois o processamento cumputacional funciona com base numerica e nao textual, foi utilizado o script abaixo para a vetorizacao dos textos:
+
+    # Vet
+    vectorizer = TfidfVectorizer(norm = None, stop_words = my_stop_words, max_features = 1000, decode_error = "ignore")
+
+    # Observe que treinamos e aplicamos em treino e apenas aplicamos em teste!
+    X_treino_vectors = vectorizer.fit_transform(X_treino)
+    X_teste_vectors = vectorizer.transform(X_teste)
+    
+__Step 06:__ Treinamento dos modelos de Machine Learning:
+
+> Adiante realizou-se o processo de treinamento dos modelos de  machine learning, optou-se por escolher os modelos de Regressao Logistica, multinomial, Random Forrest e Multinomial Nayve Baynes, optou-se por utilziar a tecnica de enssemble voting classifier, que nos permite unir as respostas dos modelos e ter uma agregacao de informacao contruibuindo para reduzir um erro e melhorar a acuracia e estabilidade das respostas do modelo, utilizou-se o framework scikit-learn para o desenvolvimento.
+
+      # Modelos:
+
+      # https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
+      mod1 = LogisticRegression(multi_class = 'multinomial', solver = 'lbfgs', random_state = 30, max_iter = 1000)
+
+      # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+      mod2 = RandomForestClassifier(n_estimators = 1000, max_depth = 100, random_state = 1)
+
+      # https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.MultinomialNB.html
+      mod3 = MultinomialNB()
+
+      # Lista para o resultado
+      resultado = []
+
+      # Iniciando o modelo de votação
+      # https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.VotingClassifier.html
+      # https://scikit-learn.org/stable/modules/ensemble.html#voting-classifier
+      voting_model = VotingClassifier(estimators = [ ('lg', mod1), ('rf', mod2), ('nb', mod3) ], voting = 'soft')
+
+      print("\nModelo de Votação:\n")
+      print(voting_model)
+      
+      # Treinamento
+      voting_model = voting_model.fit(X_treino_vectors, y_treino)
+    
+
+__Step 07:__ Predict e Avaliando a Acuracia do Modelo:
+
+> Realizou-se as etapas de predict para a base de teste e em seguida avaliacou-se a resposta da matriz de confusao e classificatio nrepport e acuracia do modelo, utilizando os scripts abaixo:
+
+      # Previsões com dados de teste
+      previsoes =  voting_model.predict(X_teste_vectors)
+
+      # Grava o resultado
+      resultado.append(accuracy_score(y_teste, previsoes))
+
+      # Print
+      print('\nAcurácia do Modelo:', accuracy_score(y_teste, previsoes),'\n')
+      print('\n')
