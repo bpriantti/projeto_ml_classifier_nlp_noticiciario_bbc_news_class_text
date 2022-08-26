@@ -32,4 +32,26 @@ __Frameworks Utilizados:__
 
 __Project Steps:__
 
-__Step 01:__ Processo de Aquisição de Dados:
+__Step 01:__ Processo de Carregamento da base dados:
+
+> Para projetos de processamento de nlp, torna-se necessário o pré-processamento dos textos a base em questão compila notícias do site bbc news nos períodos de 2005 a 2006, esta base é disponibilizada gratuitamente no site (link - abaixo), esta pesquisa foi fruto de um projeto de pesquisa em que os pesquisadores leram todas as notícias deste período documentaram e classificaram nas categorias: business, entertainment, politics, sport,tech
+
+- http://mlg.ucd.ie/datasets/bbc.html
+
+Fontes:
+- https://www.bbc.com/news
+
+__Step 02:__ Seraparando base em variavel dependente X e independente y.
+
+> Em seguida realizou-se a separacao da base em features e alvos ao todo tem-se um total de 2225 noticias catalogadas na base.
+
+      print(len(X)):
+      2225
+
+__Step 03:__ Adiante realizou-se o download das stop words, defini-se stop words como:
+
+> Stop words (ou palavras de parada – tradução livre) são palavras que podem ser consideradas irrelevantes para o conjunto de resultados a ser exibido em uma busca realizada em uma search engine. Exemplos: as, e, os, de, para, com, sem, foi.
+
+mais definicoes em:
+
+https://pythonalgos.com/nlp-stop-words-when-and-why-to-use-them/
