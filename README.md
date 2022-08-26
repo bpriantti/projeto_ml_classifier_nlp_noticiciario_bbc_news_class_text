@@ -47,7 +47,7 @@ __Step 02:__ Seraparando base em variavel dependente X e independente y.
 
       print(len(X)):
       2225
-
+  
 __Step 03:__ Adiante realizou-se o download das stop words, defini-se stop words como:
 
 > Stop words (ou palavras de parada – tradução livre) são palavras que podem ser consideradas irrelevantes para o conjunto de resultados a ser exibido em uma busca realizada em uma search engine. Exemplos: as, e, os, de, para, com, sem, foi.
@@ -55,3 +55,16 @@ __Step 03:__ Adiante realizou-se o download das stop words, defini-se stop words
 mais definicoes em:
 
 https://pythonalgos.com/nlp-stop-words-when-and-why-to-use-them/
+
+> para isso utilizou-se o framework NLTK, mais informacoes disponiveis em:
+
+https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml
+
+> como a base de noticias esta em ingles utilizaram-se as stopwords em ingles com o comando:
+
+> my_stop_words = set(stopwords.words('english'))
+
+__Step 04:__ Adiante realizou-se o download das stop words, defini-se stop words como:
+
+
+
