@@ -1,4 +1,4 @@
-# Projeto ML Classifier N.L.P Noticiciario BBC News Classificacao de texto
+# Projeto ML Classifier N.L.P Noticiário BBC News Classificacao de texto
 
 __Bussines Problem:__
 > Nos dias atuais possuímos uma grande frequência de informações disponíveis em sites, jornais e mídias de comunicação, estar a par destas notícias pode nos gerar insights de tendências de mercado, o grande ponto é que como seres humanos possuímos limitações para absorção e leitura de muitas notícias, sendo necessário a automatização dessas tarefas com a implementação de algoritmos de inteligência artificial para NLP do inglês natural language processing para a leitura automatizada e posterior classificação de um grande volume de notícias.
